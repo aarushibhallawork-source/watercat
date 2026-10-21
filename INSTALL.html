@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install Water Cat</title>
+<style>
+  :root {
+    --bg: #fdf7f9;
+    --card: #ffffff;
+    --text: #1d1a1c;
+    --muted: #6b6468;
+    --accent: #d6457f;
+    --code-bg: #f3ecef;
+    --border: #eadde3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17151a;
+      --card: #211e24;
+      --text: #f2eef1;
+      --muted: #a69ea4;
+      --accent: #ff8ab8;
+      --code-bg: #2c2830;
+      --border: #36313a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 48px 16px 64px; }
+  h1 { font-size: 2rem; margin: 0 0 4px; }
+  .lede { color: var(--muted); margin: 0 0 32px; }
+  h2 { font-size: 1.2rem; margin: 36px 0 12px; }
+  ol { padding-left: 1.4em; }
+  li { margin: 0 0 14px; }
+  li::marker { color: var(--accent); font-weight: 700; }
+  pre, code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.88em; }
+  code { background: var(--code-bg); padding: 1px 6px; border-radius: 5px; }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 8px 0 0;
+    overflow-x: auto;
+  }
+  pre code { background: none; padding: 0; }
+  kbd {
+    font: 0.85em ui-monospace, Menlo, monospace;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    padding: 0 5px;
+    background: var(--card);
+  }
+  .note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 16px 0;
+  }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Water Cat 🐈‍⬛💧</h1>
+  <p class="lede">Steps to install and run. Takes about five minutes.</p>
+
+  <h2>What you need</h2>
+  <ul>
+    <li>A Mac running macOS 13 (Ventura) or newer.</li>
+    <li>Apple's free command line tools. To check, open <strong>Terminal</strong> and run the line below. If they're already installed it will say so. Otherwise a window pops up, so click <strong>Install</strong> and wait for it to finish.
+      <pre><code>xcode-select --install</code></pre>
+    </li>
+  </ul>
+
+  <h2>Install</h2>
+  <ol>
+    <li>
+      <strong>Download the code.</strong> On the GitHub repo page, click the green <strong>Code</strong> button, then <strong>Download ZIP</strong>. Double-click the ZIP in your Downloads folder to unzip it.
+    </li>
+    <li>
+      <strong>Open Terminal in that folder.</strong> Type <code>cd </code> (with a space), drag the unzipped folder onto the Terminal window, and press <kbd>Return</kbd>. For example:
+      <pre><code>cd ~/Downloads/watercat-main</code></pre>
+    </li>
+    <li>
+      <strong>Build the app.</strong> This takes under a minute and ends with <em>Built build/Water Cat.app</em>.
+      <pre><code>bash build.sh</code></pre>
+    </li>
+    <li>
+      <strong>Move it to Applications.</strong>
+      <pre><code>cp -R "build/Water Cat.app" /Applications/</code></pre>
+    </li>
+  </ol>
+
+  <h2>Run</h2>
+  <ol>
+    <li>
+      <strong>Start her.</strong> Open <strong>Water Cat</strong> from Launchpad or Spotlight. A small cat head appears in your menu bar. Nothing else shows up yet. She'll come back in 30 minutes.
+    </li>
+    <li>
+      <strong>See her right away</strong> (optional):
+      <pre><code>open "/Applications/Water Cat.app" --args --now</code></pre>
+    </li>
+    <li>
+      <strong>Dismiss her by clicking on her.</strong> Your screens stay dimmed and your apps won't respond until you do.
+    </li>
+    <li>
+      <strong>Start her automatically.</strong> Click the cat in the menu bar and turn on <strong>Open at Login</strong>.
+    </li>
+  </ol>
+
+  <h2>The menu bar cat</h2>
+  <ul>
+    <li><strong>Next sip in … min</strong>: when she's due.</li>
+    <li><strong>Remind Me Now</strong>: call her up immediately.</li>
+    <li><strong>Pause / Resume Reminders</strong>: for meetings and presentations.</li>
+    <li><strong>Open at Login</strong>: start her when your Mac starts.</li>
+    <li><strong>Quit Water Cat</strong>.</li>
+  </ul>
+  <p class="muted">She shows up every 30 minutes. Between 11:30–1:00 and 3:30–5:00 she comes back more often, at random 10–20 minute gaps.</p>
+
+  <h2>If something goes wrong</h2>
+  <div class="note">
+    <strong>Stuck behind the dim screen?</strong> Press <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>Esc</kbd>, choose <strong>Water Cat</strong>, and click <strong>Force Quit</strong>.
+  </div>
+  <ul>
+    <li><strong>"command not found: swiftc"</strong> when building: the command line tools aren't installed. Run <code>xcode-select --install</code> and try again.</li>
+    <li><strong>Open at Login won't turn on:</strong> make sure the app is in <code>/Applications</code>, not still in the <code>build</code> folder.</li>
+  </ul>
+
+  <h2>Uninstall</h2>
+  <p>Turn off <strong>Open at Login</strong>, choose <strong>Quit Water Cat</strong> from the menu bar, then drag <strong>Water Cat</strong> from Applications to the Bin.</p>
+</main>
+</body>
+</html>
